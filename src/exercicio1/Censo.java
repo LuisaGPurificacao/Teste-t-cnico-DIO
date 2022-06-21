@@ -4,43 +4,18 @@ import java.util.Scanner;
 
 public class Censo {
 
-	// ATRIBUTOS
-	double salario;
-	int quantidadeFilhos;
-	int quantidadePessoas = 1;
-
-	// AÇÃO
-	public double calcularMediaSalario() {
-		double somaSalarios = +salario;
-		double mediaSalario = somaSalarios / quantidadePessoas;
-		return mediaSalario;
-	}
-
-	public double calcularMediaFilhos() {
-		int somaFilhos = +quantidadeFilhos;
-		double mediaFilhos = somaFilhos / quantidadePessoas;
-		return mediaFilhos;
-	}
-
-	public double calcularMaiorSalario() {
+	public static void main(String[] args) {
+		
+		double salario = 0;
+		int quantidadeFilhos = 0;
+		int quantidadePessoas = 1;
+		double somaSalarios = 0;
+		int somaFilhos = 0;
+		double mediaSalario = 0;
+		double mediaFilhos = 0;
 		double maiorSalario = 0;
-		if (salario > maiorSalario) {
-			maiorSalario = salario;
-		}
-		return maiorSalario;
-	}
-
-	public double calcularPercentual() {
 		int qntdPessoas = 0;
 		double percentual = 0;
-		if (salario > 350) {
-			qntdPessoas++;
-			percentual = (qntdPessoas / quantidadePessoas) * 100;
-		}
-		return percentual;
-	}
-
-	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
 
@@ -55,21 +30,33 @@ public class Censo {
 				break;
 			case 1:
 				System.out.println("Insira o salário da pessoa " + quantidadePessoas);
-				double salario = scan.nextDouble();
-				System.out.println("Insira o número de filhos da pessoa " + quantidadePessoas);
-				int quantidadeFilhos = scan.nextInt();
+				salario = scan.nextDouble();
+				if (salario > maiorSalario) {
+					maiorSalario = salario;
+				}
+				if (salario <= 350) {
+					qntdPessoas++;
+					percentual = (qntdPessoas / quantidadePessoas) * 100;
+				}
+				System.out.println("Insira o número de filhos da pessoa " +quantidadePessoas);
+				quantidadeFilhos = scan.nextInt();
 				quantidadePessoas++;
 				break;
 			default:
 				System.out.println("Opção inválida.\n");
 				break;
 			}
+			somaSalarios += salario;
+			mediaSalario = somaSalarios / quantidadePessoas;
+			somaFilhos += quantidadeFilhos;
+			mediaFilhos = somaFilhos / quantidadePessoas;
+			
 		} while (opcao != 0);
 
-		System.out.println("Média de salário da população: " + calcularMediaSalario());
-		System.out.println("Média de número de filhos: " + ccalcularMediaFilhos());
-		System.out.println("Maior salário: R$" + calcularMaiorSalario());
-		System.out.println("Percentual de pessoas com salário até R$350,00: " + calcularPercentual());
+		System.out.println("Média de salário da população: " + mediaSalario);
+		System.out.println("Média de número de filhos: " + mediaFilhos);
+		System.out.println("Maior salário: R$" + maiorSalario);
+		System.out.println("Percentual de pessoas com salário até R$350,00: " + percentual);
 
 	}
 
