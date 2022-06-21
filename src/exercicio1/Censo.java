@@ -53,10 +53,10 @@ public class Censo {
 			
 		} while (opcao != 0);
 
-		System.out.println("Média de salário da população: " + mediaSalario);
-		System.out.println("Média de número de filhos: " + mediaFilhos);
+		System.out.println(String.format("Média de salário da população: %.2f", mediaSalario));
+		System.out.println(String.format("Média de número de filhos: %.2f", mediaFilhos));
 		System.out.println("Maior salário: R$" + maiorSalario);
-		System.out.println("Percentual de pessoas com salário até R$350,00: " + percentual);
+		System.out.println("Percentual de pessoas com salário até R$350,00: " + percentual + "%");
 
 	}
 
